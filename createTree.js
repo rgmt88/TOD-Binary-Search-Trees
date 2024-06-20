@@ -98,6 +98,37 @@ function find(node, value) {
     }
 }
 
+function levelOrder(root, callback) {
+    if (root === null) {
+        return [];
+    }
 
+    const queue = [root];
+    const result = [];
 
-export { createTree, insert, deleteItem, find };
+    while (queue.length > 0) {
+        // Dequeue the first node
+        const currentNode = queue.shift();
+
+        if (callback) {
+            // Perform the callback on the current node
+            callback(currentNode);
+        } else {
+            // Collect values if no callback is provided
+            result.push(currentNode.value);
+        }
+
+        if (currentNode.leftChild) {
+            // Enqueue left child
+            queue.push(currentNode.leftChild);
+        }
+        if (currentNode.rightChild) {
+            // Enqueue right child
+            queue.push(currentNode.rightChild);
+        }
+    }
+
+    return callback ? undefined : result;
+}
+
+export { createTree, insert, deleteItem, find, levelOrder };
