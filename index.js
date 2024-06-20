@@ -1,5 +1,5 @@
 import { prettyPrint } from "./prettyPrint.js";
-import { createTree, insert, deleteItem, find, levelOrder } from "./createTree.js";
+import { createTree, insert, deleteItem, find, levelOrder, inOrder } from "./createTree.js";
 
 const array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 const tree = createTree(array).root; 
@@ -9,5 +9,6 @@ prettyPrint(insert(tree, 666));
 prettyPrint(deleteItem(tree, 8));
 prettyPrint(find(tree, 4));
 console.log(levelOrder(tree));
+console.log(inOrder(tree));
 
 
