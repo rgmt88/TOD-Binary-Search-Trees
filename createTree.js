@@ -84,4 +84,20 @@ function findSmallest(node) {
     return node;
 }
 
-export { createTree, insert, deleteItem };
+function find(node, value) {
+    if (node === null) {
+        return null;
+    }
+
+    if (value < node.value) {
+        return find(node.leftChild, value);
+    } else if (value > node.value) {
+        return find(node.rightChild, value);
+    } else {
+        return node;
+    }
+}
+
+
+
+export { createTree, insert, deleteItem, find };
