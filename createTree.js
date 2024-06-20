@@ -28,4 +28,18 @@ function createTree(array) {
     };
 }
 
-export { createTree };
+function insert(node, value) {
+    if (node === null) {
+        return createNode(value);
+    };
+
+    if (value < node.value) {
+        node.leftChild = insert(node.leftChild, value);
+    } else if (value > node.value) {
+        node.rightChild = insert(node.rightChild, value);
+    }
+
+    return node;
+}
+
+export { createTree, insert };
