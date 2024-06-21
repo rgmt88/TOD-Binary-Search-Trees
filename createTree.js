@@ -106,4 +106,24 @@ function height(node) {
     return 1 + Math.max(height(node.leftChild), height(node.rightChild));
 }
 
-export { createTree, insert, deleteItem, find };
+function depth(node, root) {
+    if (node === root || node === null) {
+        return 0;
+    } else {
+        let parent = root, level = 0;
+        // Traverse the tree to find the node and calculate depth
+        while (parent !== null) {
+            if (node.value < parent.value) {
+                parent = parent.leftChild;
+            } else if (node.value > parent.value) {
+                parent = parent.rightChild;
+            } else {
+                return level;
+            }
+            level++;
+        }
+        return -1;
+    }
+}
+
+export { createTree, insert, deleteItem, find, height, depth };
