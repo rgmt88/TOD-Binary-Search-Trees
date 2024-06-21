@@ -79,4 +79,26 @@ function preOrder(root, callback) {
     return callback ? undefined : result;
 }
 
-export { levelOrder, inOrder, preOrder };
+function postOrder(root, callback) {
+    const result = [];
+
+    function postOrderTraverse(node) {
+        if (node === null) {
+            return null;
+        }
+
+        postOrderTraverse(node.leftChild);
+        postOrderTraverse(node.rightChild);
+
+        if (callback) {
+            callback(node);
+        } else {
+            result.push(node.value);
+        }
+    }
+
+    postOrderTraverse(root);
+    return callback ? undefined : result;
+}
+
+export { levelOrder, inOrder, preOrder, postOrder };
