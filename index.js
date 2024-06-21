@@ -1,5 +1,6 @@
 import { prettyPrint } from "./prettyPrint.js";
-import { createTree, insert, deleteItem, find, levelOrder, inOrder, preOrder } from "./createTree.js";
+import { createTree, insert, deleteItem, find } from "./createTree.js";
+import { levelOrder, inOrder, preOrder } from "./traverse.js"
 
 const array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 const tree = createTree(array).root; 
