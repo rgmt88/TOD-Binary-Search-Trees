@@ -134,13 +134,13 @@ function levelOrder(root, callback) {
 function inOrder(root, callback) {
     const result = [];
 
-    function traverse(node) {
+    function inOrderTraverse(node) {
         if (node === null) {
             return null;
         }
 
         // First, visit the left child (subtree)
-        traverse(node.leftChild);
+        inOrderTraverse(node.leftChild);
 
         // Then, process the current node
         if (callback) {
@@ -150,11 +150,33 @@ function inOrder(root, callback) {
         }
 
         // Finally, visit the right child (subtree)
-        traverse(node.rightChild);
+        inOrderTraverse(node.rightChild);
     }
 
-    traverse(root);
+    inOrderTraverse(root);
     return callback ? undefined : result;
 }
 
-export { createTree, insert, deleteItem, find, levelOrder, inOrder };
+function preOrder(root, callback) {
+    const result = [];
+
+    function preOrderTraverse(node) {
+        if (node === null) {
+            return null;
+        }
+        
+        if (callback) {
+            callback(node);
+        } else {
+            result.push(node.value);
+        }
+
+        preOrderTraverse(node.leftChild);
+        preOrderTraverse(node.rightChild);
+    }
+
+    preOrderTraverse(root);
+    return callback ? undefined : result;
+}
+
+export { createTree, insert, deleteItem, find, levelOrder, inOrder, preOrder };
