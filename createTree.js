@@ -98,4 +98,12 @@ function find(node, value) {
     }
 }
 
+function height(node) {
+    if (node === null) {
+        // Return -1 for null to make leaf node heigh 0
+        return -1;
+    }
+    return 1 + Math.max(height(node.leftChild), height(node.rightChild));
+}
+
 export { createTree, insert, deleteItem, find };
