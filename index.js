@@ -3,20 +3,52 @@ import { createTree, insert, deleteItem, find, height, depth } from "./createTre
 import { levelOrder, inOrder, preOrder, postOrder } from "./traverse.js"
 import { isBalanced, reBalance } from "./balanceTree.js";
 
-const array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
-const tree = createTree(array).root; 
-console.log(tree);
-prettyPrint(tree);
-prettyPrint(insert(tree, 666));
-prettyPrint(deleteItem(tree, 8));
-prettyPrint(find(tree, 4));
-console.log(levelOrder(tree));
-console.log(inOrder(tree));
-console.log(preOrder(tree));
-console.log(postOrder(tree));
-console.log(height(tree));
-console.log(depth(tree.leftChild, tree));
-console.log(isBalanced(tree));
-console.log(isBalanced(reBalance(tree)));
-prettyPrint(reBalance(tree));
+function randomArray(arraySize = 50, max = 100) {
+    const result = [];
+    while (result.length < arraySize) {
+        result.push(Math.floor(Math.random() * max));
+    }
+    return result;
+}
 
+function driverScript() {
+    // Create a binary search tree from a random array
+    const array = randomArray();
+    const tree = createTree(array).root;
+
+    // Check if the initial tree is balanced
+    console.log('Initial tree balanced:', isBalanced(tree));
+
+    // Print all elements in different tree traversals
+    console.log('Level order:', levelOrder(tree));
+    console.log('In-order:', inOrder(tree));
+    console.log('Pre-order:', preOrder(tree));
+    console.log('Post-order:', postOrder(tree));
+
+    // Unbalance the tree by adding several large numbers
+    insert(tree, 101);
+    insert(tree, 666);
+    insert(tree, 999);
+
+    // Check if the tree is now unbalanced
+    console.log('Tree balanced after insertions:', isBalanced(tree));
+
+    // Rebalance the tree
+    const rebalancedTree = reBalance(tree);
+
+    // Check if the tree is balanced after rebalancing
+    console.log('Tree balanced after rebalancing:', isBalanced(rebalancedTree));
+
+    // Print all elements in different tree traversals again
+    console.log('Level order after rebalancing:', levelOrder(rebalancedTree));
+    console.log('In-order after rebalancing:', inOrder(rebalancedTree));
+    console.log('Pre-order after rebalancing:', preOrder(rebalancedTree));
+    console.log('Post-order after rebalancing:', postOrder(rebalancedTree));
+
+    // Optionally, pretty print the tree for visual inspection
+    prettyPrint(rebalancedTree);
+
+    return rebalancedTree;
+}
+
+driverScript();
