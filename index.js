@@ -1,7 +1,7 @@
 import { prettyPrint } from "./prettyPrint.js";
 import { createTree, insert, deleteItem, find, height, depth } from "./createTree.js";
 import { levelOrder, inOrder, preOrder, postOrder } from "./traverse.js"
-import { isBalanced } from "./balanceTree.js";
+import { isBalanced, reBalance } from "./balanceTree.js";
 
 const array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 const tree = createTree(array).root; 
@@ -17,5 +17,6 @@ console.log(postOrder(tree));
 console.log(height(tree));
 console.log(depth(tree.leftChild, tree));
 console.log(isBalanced(tree));
-
+console.log(isBalanced(reBalance(tree)));
+prettyPrint(reBalance(tree));
 

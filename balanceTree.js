@@ -1,4 +1,6 @@
 import { height } from "./createTree.js"
+import { inOrder } from "./traverse.js";
+import { createTree } from "./createTree.js";
 
 function isBalanced(root) {
     if (root === null) {
@@ -12,4 +14,11 @@ function isBalanced(root) {
     }
 }
 
-export { isBalanced };
+function reBalance(root) {
+    if (isBalanced(root) === false) {
+        return createTree(inOrder(root)).root;
+    }
+    return root;
+}
+
+export { isBalanced, reBalance };
